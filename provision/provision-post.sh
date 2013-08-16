@@ -69,6 +69,7 @@ then
 	ln -sfT /srv/config/wordpress-config/mu-plugins /srv/www/htdocs-local/wp-content/mu-plugins
 	ln -sfT /srv/config/wordpress-config/wp-config.php /srv/www/htdocs-local/wp-config.php
 	ln -sfT /srv/www/wordpress-trunk/wp-load.php /srv/www/htdocs-local/wp-load.php
+	ln -sfT /srv/config/wordpress-config/index.php /srv/www/htdocs-local/index.php
 fi
 
 # Base mobile theme for VIP
