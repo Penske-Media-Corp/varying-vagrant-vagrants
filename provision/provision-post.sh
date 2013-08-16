@@ -194,7 +194,7 @@ PLUGINS=(
 
 for ROW in "${PMC_SITES[@]}"
 do
-	export HTTP_HOST=""
+	# Keeps some plugins from complaining
 	export HTTP_USER_AGENT="WP_CLI"
 
 	IFS=',' read -ra SITE_DATA <<< "$ROW"
@@ -208,7 +208,6 @@ do
 			SITE_NAME="$DATA"
 		elif [ $I == 3 ]; then
 			DOMAIN="$DATA"
-			export HTTP_HOST=$DOMAIN
 		elif [ $I == 4 ]; then
 			DBNAME="$DATA"
 		fi
@@ -223,7 +222,7 @@ do
 			printf "\nSkipping this step, SSH key has not been created.\n"
 		else
 			echo "create database IF NOT EXISTS $DBNAME; GRANT ALL PRIVILEGES ON $DBNAME.* TO 'wp'@'localhost'; FLUSH PRIVILEGES; " | mysql -uroot -pblank
-			
+
 			su -c 'git clone git@bitbucket.org:penskemediacorp/'$REPO'.git /srv/www/htdocs-local/wp-content/themes/vip/'$DESTINATION_DIR'' - vagrant
 			wp core install --path=/srv/www/wordpress-trunk/ --url=$DOMAIN --quiet --title="$SITE_NAME" --admin_name=admin --admin_email="admin@local.dev" --admin_password="password"
 
@@ -250,7 +249,7 @@ do
 			wp --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN
 		fi
 
-		PLUGIN_STATUS=`wp --path=/srv/www/wordpress-trunk/ plugin status $PLUGIN | grep "Status:" | cut -d ':' -f2`
+		PLUGIN_STATUS=`wp --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin status $PLUGIN | grep "Status:" | cut -d ':' -f2`
 		if [ " Active" != "$PLUGIN_STATUS" ]; then
 			printf "\nActivating plugin $PLUGIN for site $DOMAIN\n"
 			wp --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin activate $PLUGIN
