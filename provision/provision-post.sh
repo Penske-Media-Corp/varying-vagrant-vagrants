@@ -29,6 +29,21 @@ maybe_update_file(){
 	fi
 }
 
+maybe_link_file(){
+	local SOURCE_FILE=$1
+	local LINK=$2
+
+	if [ ! -e "$SOURCE_FILE" ]; then
+		printf "Aborting test: source file does not exist: $SOURCE_FILE\n"
+		return 1;
+	elif [ -L "$LINK" ]; then
+		printf "\n* Linking $SOURCE_FILE -> $LINK\n"
+		ln -sfT $SOURCE_FILE $LINK
+		return $?;
+	fi
+	return 0;
+}
+
 # Replace the default wp-config.php
 maybe_update_file /srv/config/wordpress-config/wp-config.php /srv/www/wordpress-trunk/wp-config.php
 
@@ -62,15 +77,17 @@ then
 	mkdir /srv/www/htdocs-local/wp-content/themes
 	mkdir /srv/www/htdocs-local/wp-content/themes/pub
 	mkdir /srv/www/htdocs-local/wp-content/themes/vip
-	ln -sfT /srv/www/wordpress-trunk /srv/www/htdocs-local/wordpress
-	ln -sfT /srv/www/wordpress-plugins /srv/www/htdocs-local/wp-content/plugins
-	ln -sfT /srv/www/wordpress-uploads /srv/www/htdocs-local/wp-content/uploads
-	ln -sfT /srv/www/wordpress-blogs.dir /srv/www/htdocs-local/wp-content/blogs.dir
-	ln -sfT /srv/config/wordpress-config/mu-plugins /srv/www/htdocs-local/wp-content/mu-plugins
-	ln -sfT /srv/config/wordpress-config/wp-config.php /srv/www/htdocs-local/wp-config.php
-	ln -sfT /srv/www/wordpress-trunk/wp-load.php /srv/www/htdocs-local/wp-load.php
-	ln -sfT /srv/config/wordpress-config/index.php /srv/www/htdocs-local/index.php
 fi
+
+# Make sure WP structure symlinks are intact
+maybe_link_file /srv/www/wordpress-trunk /srv/www/htdocs-local/wordpress
+maybe_link_file /srv/www/wordpress-plugins /srv/www/htdocs-local/wp-content/plugins
+maybe_link_file /srv/www/wordpress-uploads /srv/www/htdocs-local/wp-content/uploads
+maybe_link_file /srv/www/wordpress-blogs.dir /srv/www/htdocs-local/wp-content/blogs.dir
+maybe_link_file /srv/config/wordpress-config/mu-plugins /srv/www/htdocs-local/wp-content/mu-plugins
+maybe_link_file /srv/config/wordpress-config/wp-config.php /srv/www/htdocs-local/wp-config.php
+maybe_link_file /srv/www/wordpress-trunk/wp-load.php /srv/www/htdocs-local/wp-load.php
+maybe_link_file /srv/config/wordpress-config/index.php /srv/www/htdocs-local/index.php
 
 # Base mobile theme for VIP
 if [ ! -d /srv/www/htdocs-local/wp-content/themes/pub/wp-mobile ]
@@ -149,17 +166,9 @@ then
 	mkdir /srv/www/wordpress-plugins
 	rm -rf /srv/www/wordpress-trunk/wp-content/plugins
 	rm -rf /srv/www/wordpress-default/wp-content/plugins
-	ln -sfT /srv/www/wordpress-plugins /srv/www/wordpress-trunk/wp-content/plugins
-	ln -sfT /srv/www/wordpress-plugins /srv/www/wordpress-default/wp-content/plugins
-	svn up /srv/www/wordpress-trunk/wp-content/plugins
-	svn up /srv/www/wordpress-default/wp-content/plugins
 fi
-
-# Set up mu-plugins
-if [ -L /srv/www/wordpress-trunk/wp-content/mu-plugins ]; then
-	printf "\nLinking mu-plugins...\n"
-	ln -sfT /srv/config/wordpress-config/mu-plugins /srv/www/wordpress-trunk/wp-content/mu-plugins
-fi
+maybe_link_file /srv/www/wordpress-plugins /srv/www/wordpress-trunk/wp-content/plugins
+maybe_link_file /srv/www/wordpress-plugins /srv/www/wordpress-default/wp-content/plugins
 
 printf "\nUpdating plugins...\n"
 wp --path=/srv/www/wordpress-trunk/ plugin update-all
