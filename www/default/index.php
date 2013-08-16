@@ -17,20 +17,22 @@
 
 <ul class="nav">
 	<li class="active"><h2>Sites</h2></li>
-	<li><a href="http://local.awardsline.com/">Awardsline</a><br />
-		<a href="http://local.awardsline.com/wp-admin/">Awardsline Admin</a></li>
-	<li><a href="http://local.bgr.com/">BGR</a><br />
-		<a href="http://local.bgr.com/wp-admin/">BGR Admin</a></li>
-	<li><a href="http://local.deadline.com/">Deadline</a><br />
-		<a href="http://local.deadline.com/wp-admin/">Deadline Admin</a></li>
-	<li><a href="http://local.hollywoodlife.com/">HollywoodLife</a><br />
-		<a href="http://local.hollywoodlife.com/wp-admin/">HollywoodLife Admin</a></li>
-	<li><a href="http://local.tvline.com/">TVLine</a><br />
-		<a href="http://local.tvline.com/wp-admin/">TVLine Admin</a></li>
-	<li><a href="http://local.variety.com/">Variety</a><br />
-		<a href="http://local.variety.com/wp-admin/">Variety Admin</a></li>
-	<li><a href="http://local.variety411.com/">Variety411</a><br />
-		<a href="http://local.variety411.com/wp-admin/">Variety411 Admin</a></li>
+	<li><a href="http://local.awardsline.dev/">Awardsline</a><br />
+		<a href="http://local.awardsline.dev/wp-admin/">Awardsline Admin</a></li>
+	<li><a href="http://local.bgr.dev/">BGR</a><br />
+		<a href="http://local.bgr.dev/wp-admin/">BGR Admin</a></li>
+	<li><a href="http://local.deadline.dev/">Deadline</a><br />
+		<a href="http://local.deadline.dev/wp-admin/">Deadline Admin</a></li>
+	<li><a href="http://local.hollywoodlife.dev/">HollywoodLife</a><br />
+		<a href="http://local.hollywoodlife.dev/wp-admin/">HollywoodLife Admin</a></li>
+	<li><a href="http://local.tvline.dev/">TVLine</a><br />
+		<a href="http://local.tvline.dev/wp-admin/">TVLine Admin</a></li>
+	<li><a href="http://local.variety.dev/">Variety</a><br />
+		<a href="http://local.variety.dev/wp-admin/">Variety Admin</a></li>
+	<li><a href="http://local.variety411.dev/">Variety411</a><br />
+		<a href="http://local.variety411.dev/wp-admin/">Variety411 Admin</a></li>
+	<li><a href="http://local.varietyarchive.dev/">Variety Archive (aka varietyultimate.com)</a><br />
+	</li>
 </ul>
 </body>
 </html>
