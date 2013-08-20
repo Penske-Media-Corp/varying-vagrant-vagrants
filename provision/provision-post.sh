@@ -214,6 +214,9 @@ do
 	# Keeps some plugins from complaining
 	export HTTP_USER_AGENT="WP_CLI"
 
+	# Makes our custom HTTP_HOST-based wp-config.php play nice, in spite of the --url param
+	export HTTP_HOST="$DOMAIN"
+
 	IFS=',' read -ra SITE_DATA <<< "$ROW"
 	I=0
 	for DATA in "${SITE_DATA[@]}"; do
