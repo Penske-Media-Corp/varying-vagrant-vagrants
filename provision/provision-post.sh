@@ -174,13 +174,13 @@ printf "\nUpdating plugins...\n"
 wp --path=/srv/www/wordpress-trunk/ plugin update-all
 
 PMC_SITES=(
-	"bgr,bgr,BGR,local.bgr.com,wp_local_bgr"
-	"pmc-411,pmc-411,Variety411,local.variety411.com,wp_local_variety411"
-	"pmc-awardsline,pmc-awardsline,Awardsline,local.awardsline.com,wp_local_awardsline"
-	"pmc-deadline,pmc-deadline,Deadline,local.deadline.com,wp_local_deadline"
-	"pmc-hollywoodlife,pmc-hollywoodlife,HollywoodLife,local.hollywoodlife.com,wp_local_hollywoodlife"
-	"pmc-tvline,pmc-tvline,TVLine,local.tvline.com,wp_local_tvline"
-	"pmc-variety,pmc-variety,Variety,local.variety.com,wp_local_variety"
+	"bgr,bgr,BGR,local.bgr.dev,wp_local_bgr"
+	"pmc-411,pmc-411,Variety411,local.variety411.dev,wp_local_variety411"
+	"pmc-awardsline,pmc-awardsline,Awardsline,local.awardsline.dev,wp_local_awardsline"
+	"pmc-deadline,pmc-deadline,Deadline,local.deadline.dev,wp_local_deadline"
+	"pmc-hollywoodlife,pmc-hollywoodlife,HollywoodLife,local.hollywoodlife.dev,wp_local_hollywoodlife"
+	"pmc-tvline,pmc-tvline,TVLine,local.tvline.dev,wp_local_tvline"
+	"pmc-variety,pmc-variety,Variety,local.variety.dev,wp_local_variety"
 	)
 PLUGINS=(
 	"debug-bar-console"
