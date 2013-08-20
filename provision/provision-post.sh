@@ -268,6 +268,12 @@ do
 	done
 done
 
+# Set up htdocs for debugging (no symlinks)
+if [ ! -d /srv/www/htdocs-debug ]
+then
+	cp -RL /srv/www/htdocs-local /srv/www/htdocs-debug
+fi
+
 # Make sure xdebug is on
 php5enmod xdebug
 service php5-fpm restart
