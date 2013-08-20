@@ -18,19 +18,19 @@
 <ul class="nav">
 	<li class="active"><h2>Sites</h2></li>
 	<li><a href="http://local.awardsline.dev/">Awardsline</a><br />
-		<a href="http://local.awardsline.dev/wp-admin/">Awardsline Admin</a></li>
+		<a href="http://local.awardsline.dev/wordpress/wp-admin/">Awardsline Admin</a></li>
 	<li><a href="http://local.bgr.dev/">BGR</a><br />
-		<a href="http://local.bgr.dev/wp-admin/">BGR Admin</a></li>
+		<a href="http://local.bgr.dev/wordpress/wp-admin/">BGR Admin</a></li>
 	<li><a href="http://local.deadline.dev/">Deadline</a><br />
-		<a href="http://local.deadline.dev/wp-admin/">Deadline Admin</a></li>
+		<a href="http://local.deadline.dev/wordpress/wp-admin/">Deadline Admin</a></li>
 	<li><a href="http://local.hollywoodlife.dev/">HollywoodLife</a><br />
-		<a href="http://local.hollywoodlife.dev/wp-admin/">HollywoodLife Admin</a></li>
+		<a href="http://local.hollywoodlife.dev/wordpress/wp-admin/">HollywoodLife Admin</a></li>
 	<li><a href="http://local.tvline.dev/">TVLine</a><br />
-		<a href="http://local.tvline.dev/wp-admin/">TVLine Admin</a></li>
+		<a href="http://local.tvline.dev/wordpress/wp-admin/">TVLine Admin</a></li>
 	<li><a href="http://local.variety.dev/">Variety</a><br />
-		<a href="http://local.variety.dev/wp-admin/">Variety Admin</a></li>
+		<a href="http://local.variety.dev/wordpress/wp-admin/">Variety Admin</a></li>
 	<li><a href="http://local.variety411.dev/">Variety411</a><br />
-		<a href="http://local.variety411.dev/wp-admin/">Variety411 Admin</a></li>
+		<a href="http://local.variety411.dev/wordpress/wp-admin/">Variety411 Admin</a></li>
 	<li><a href="http://local.varietyarchive.dev/">Variety Archive (aka varietyultimate.com)</a><br />
 	</li>
 </ul>
