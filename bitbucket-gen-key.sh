@@ -12,7 +12,15 @@ gen_key(){
 
     if [ -f "${ID_FILE}" ]; then
         echo "The file ${ID_FILE} already exists.";
-        echo "If you wanto to proceed, delete this file and execute the script again";
+
+		echo "Recording SSH config..."
+		record_ssh_config bitbucket.org $ID_FILE ~/.ssh/config;
+
+		echo "Copying key to config/ssh..."
+		CURRENT_DIR=`dirname $0`
+		mkdir -p $CURRENT_DIR/config/ssh
+		cp ~/.ssh/bitbucket.org_id_rsa* $CURRENT_DIR/config/ssh/
+
         return 1;
     fi;
 
@@ -75,27 +83,42 @@ record_ssh_config(){
     local SERVICE_NAME=$1;
     local ID_FILE=$2;
     local SSH_CONFIG=$3;
-    touch "$SSH_CONFIG"
-    echo "
+
+	touch "$SSH_CONFIG"
+    CONFIG_IS_SET=`cat ~/.ssh/config | grep "Host $SERVICE_NAME"`;
+    if [ ! -z "$CONFIG_IS_SET" ]; then
+    	echo "~/.ssh/config is already configured"
+    	return 0;
+    else
+		echo "Configuring ~/.ssh/config"
+		echo "
 # $SERVICE_NAME CONFIG
 Host $SERVICE_NAME
   HostName $SERVICE_NAME
   PreferredAuthentications publickey
   StrictHostKeyChecking no
   IdentityFile ${ID_FILE}" >> ${SSH_CONFIG};
+	    chmod 600 ${SSH_CONFIG};
+    fi
+
 
 	CURRENT_DIR=`dirname $0`
-	mkdir -p $CURRENT_DIR/config/ssh
 	touch $CURRENT_DIR/config/ssh/config
-    echo "
+    CONFIG_IS_SET=`cat config/ssh/config | grep "Host $SERVICE_NAME"`;
+    if [ ! -z "$CONFIG_IS_SET" ]; then
+    	echo "config/ssh/config is already configured"
+    	return 0;
+    else
+		echo "Configuring config/ssh/config"
+		mkdir -p $CURRENT_DIR/config/ssh
+		echo "
 # $SERVICE_NAME CONFIG
 Host $SERVICE_NAME
   HostName $SERVICE_NAME
   PreferredAuthentications publickey
   StrictHostKeyChecking no
   IdentityFile /home/vagrant/.ssh/${SERVICE_NAME}_id_rsa" >> $CURRENT_DIR/config/ssh/config;
-
-    chmod 600 ${SSH_CONFIG};
+	fi
     return 0;
 }
 
