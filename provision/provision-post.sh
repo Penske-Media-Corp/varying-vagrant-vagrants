@@ -167,8 +167,15 @@ then
 	rm -rf /srv/www/wordpress-trunk/wp-content/plugins
 	rm -rf /srv/www/wordpress-default/wp-content/plugins
 fi
+
+if [ -d /srv/www/wordpress-trunk/wp-content/themes ] 
+then
+	rm -rf /srv/www/wordpress-trunk/wp-content/themes
+fi
+
 maybe_link_file /srv/www/wordpress-plugins /srv/www/wordpress-trunk/wp-content/plugins
 maybe_link_file /srv/www/wordpress-plugins /srv/www/wordpress-default/wp-content/plugins
+maybe_link_file /srv/www/htdocs-local/wp-content/themes/ /srv/www/wordpress-trunk/wp-content/themes
 
 printf "\nUpdating plugins...\n"
 wp --path=/srv/www/wordpress-trunk/ plugin update-all
