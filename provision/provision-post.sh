@@ -268,3 +268,6 @@ do
 	done
 done
 
+# Make sure xdebug is on
+php5enmod xdebug
+service php5-fpm restart
