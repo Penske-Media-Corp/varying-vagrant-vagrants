@@ -36,7 +36,7 @@ maybe_link_file(){
 	if [ ! -e "$SOURCE_FILE" ]; then
 		printf "Aborting test: source file does not exist: $SOURCE_FILE\n"
 		return 1;
-	elif [ -L "$LINK" ]; then
+	elif [ ! -L "$LINK" ]; then
 		printf "\n* Linking $SOURCE_FILE -> $LINK\n"
 		ln -sfT $SOURCE_FILE $LINK
 		return $?;
