@@ -168,7 +168,7 @@ then
 	rm -rf /srv/www/wordpress-default/wp-content/plugins
 fi
 
-if [ -d /srv/www/wordpress-trunk/wp-content/themes ] 
+if [ -d /srv/www/wordpress-trunk/wp-content/themes ]
 then
 	rm -rf /srv/www/wordpress-trunk/wp-content/themes
 fi
@@ -200,6 +200,7 @@ PLUGINS=(
 	"log-deprecated-notices"
 	"log-viewer"
 	"mp6"
+	"pmc-benchmark"
 	"polldaddy"
 	"regenerate-thumbnails"
 	"rewrite-rules-inspector"
