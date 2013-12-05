@@ -10,4 +10,6 @@ add_action( 'muplugins_loaded', function() {
 	}
 } );
 
+include_once WP_CONTENT_DIR . "/themes/vip/pmc-411/pmc-411-2013/plugins/theme_switcher.php";
+
 //EOF
