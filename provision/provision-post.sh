@@ -188,6 +188,7 @@ PMC_SITES=(
 	"pmc-hollywoodlife,pmc-hollywoodlife,HollywoodLife,local.hollywoodlife.dev,wp_local_hollywoodlife"
 	"pmc-tvline,pmc-tvline,TVLine,local.tvline.dev,wp_local_tvline"
 	"pmc-variety,pmc-variety,Variety,local.variety.dev,wp_local_variety"
+	"pmc-variety-latino,pmc-variety-latino,VarityLatino,local.varietylatino.dev,wp_local_varietylatino"
 	)
 PLUGINS=(
 	"debug-bar-console"
