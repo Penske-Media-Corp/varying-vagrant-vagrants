@@ -178,7 +178,7 @@ maybe_link_file /srv/www/wordpress-plugins /srv/www/wordpress-default/wp-content
 maybe_link_file /srv/www/htdocs-local/wp-content/themes/ /srv/www/wordpress-trunk/wp-content/themes
 
 printf "\nUpdating plugins...\n"
-wp --path=/srv/www/wordpress-trunk/ plugin update-all
+wp --allow-root --path=/srv/www/wordpress-trunk/ plugin update-all
 
 PMC_SITES=(
 	"bgr,bgr,BGR,local.bgr.dev,wp_local_bgr"
@@ -246,17 +246,17 @@ do
 			echo "create database IF NOT EXISTS $DBNAME; GRANT ALL PRIVILEGES ON $DBNAME.* TO 'wp'@'localhost'; FLUSH PRIVILEGES; " | mysql -uroot -pblank
 
 			su -c 'git clone git@bitbucket.org:penskemediacorp/'$REPO'.git /srv/www/htdocs-local/wp-content/themes/vip/'$DESTINATION_DIR'' - vagrant
-			wp core install --path=/srv/www/wordpress-trunk/ --url=$DOMAIN --quiet --title="$SITE_NAME" --admin_name=admin --admin_email="admin@local.dev" --admin_password="password"
+			wp --allow-root core install --path=/srv/www/wordpress-trunk/ --url=$DOMAIN --quiet --title="$SITE_NAME" --admin_name=admin --admin_email="admin@local.dev" --admin_password="password"
 
 			# Install theme unit test data
 			# As of Aug 14 2013 the theme-test command can't deal with global flags like --path, it must be run in the WordPress root folder.
 			printf "\nInstalling theme unit test data for $DOMAIN...\n"
 			cd /srv/www/wordpress-trunk/
-			wp --url=$DOMAIN theme-test install --option=skip --menus
+			wp --allow-root --url=$DOMAIN theme-test install --option=skip --menus
 
 			# Activate the theme
 			printf "\nActivating $REPO theme on $DOMAIN...\n"
-			wp --url=$DOMAIN theme activate vip/$DESTINATION_DIR
+			wp --allow-root --url=$DOMAIN theme activate vip/$DESTINATION_DIR
 		fi
 	else
 		printf "\nUpdating $REPO theme...\n"
@@ -268,13 +268,13 @@ do
 		if [ ! -d "/srv/www/wordpress-plugins/$PLUGIN" ]
 		then
 			printf "\nInstalling plugin: $PLUGIN\n"
-			wp --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN
+			wp --allow-root --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN
 		fi
 
-		PLUGIN_STATUS=`wp --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin status $PLUGIN | grep "Status:" | cut -d ':' -f2`
+		PLUGIN_STATUS=`wp --allow-root --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin status $PLUGIN | grep "Status:" | cut -d ':' -f2`
 		if [ " Active" != "$PLUGIN_STATUS" ]; then
 			printf "\nActivating plugin $PLUGIN for site $DOMAIN\n"
-			wp --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin activate $PLUGIN
+			wp --allow-root --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin activate $PLUGIN
 		fi
 
 	done
