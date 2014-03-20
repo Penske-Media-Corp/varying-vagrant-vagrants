@@ -19,6 +19,12 @@ if [[ $ping_result != *bytes?from* ]]
 then
 	ping_result=`ping -c 2 4.2.2.2 2>&1`
 fi
+# if we can't see the internet, no point of continuing as we can't download any package or checkout any required repo
+if [[ $ping_result != *bytes?from* ]]
+then
+	echo "** Error connecting to the internet, cannot continue with provisioning **"
+	exit
+fi
 
 # PACKAGE INSTALLATION
 #
