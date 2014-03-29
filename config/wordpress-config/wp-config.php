@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * The base configurations of the WordPress.
  *
@@ -8,6 +10,22 @@
  * wp-config.php} Codex page. You can get the MySQL settings from your web host.
  * @package WordPress
  */
+
+define( 'AUTOMATIC_UPDATER_DISABLED', true );
+
+// work around for wp cli script document root with symlink
+if ( defined('WP_CLI') ) {
+	$options = getopt( '', array('path::') );
+	if ( !empty( $options['path'] ) ) {
+		$path = $options['path'];
+	} else {
+		$path = $_SERVER['PWD'];
+	}
+	if ( !empty( $path ) && strpos( $path, '/wordpress' ) !== false ) {
+		$_SERVER['DOCUMENT_ROOT'] = str_replace( '/wordpress','', $path );
+	}
+}
+
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
@@ -127,6 +145,7 @@ define( 'SCRIPT_DEBUG', true );
 define( 'JETPACK_DEV_DEBUG', true );
 define( 'SAVEQUERIES', true );
 define( 'DISABLE_WP_CRON', true );
+//define( 'WP_DEBUG_LOG', true);
 
 /* That's all, stop editing! Happy blogging. */
 
