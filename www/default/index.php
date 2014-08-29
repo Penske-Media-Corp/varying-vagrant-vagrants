@@ -1,3 +1,16 @@
+<?php
+/**
+ * If a custom dashboard file exists, load that instead of the default
+ * dashboard provided by Varying Vagrant Vagrants. This file should be
+ * located in the `www/default/` directory.
+ */
+if ( file_exists( 'dashboard-custom.php' ) ) {
+	include( 'dashboard-custom.php' );
+	exit;
+}
+
+// Begin default dashboard.
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,33 +19,20 @@
 </head>
 <body>
 <ul class="nav">
-	<li class="active"><h2>Tools</h2></li>
-	<li><a href="https://github.com/Penske-Media-Corp/varying-vagrant-vagrants">PMC VVV Home</a></li>
+	<li class="active"><a href="#">Home</a></li>
+	<li><a href="https://github.com/varying-vagrant-vagrants/vvv/">Repository</a></li>
 	<li><a href="database-admin/">phpMyAdmin</a></li>
 	<li><a href="memcached-admin/">phpMemcachedAdmin</a></li>
+	<li><a href="opcache-status/opcache.php">Opcache Status</a></li>
 	<li><a href="webgrind/">Webgrind</a></li>
-	<li><a href="apc/">APC</a><br />Username: apc<br />Password: apc</li>
 	<li><a href="phpinfo/">PHP Info</a></li>
 </ul>
 
 <ul class="nav">
-	<li class="active"><h2>Sites</h2></li>
-	<li><a href="http://local.awardsline.dev/">Awardsline</a><br />
-		<a href="http://local.awardsline.dev/wordpress/wp-admin/">Awardsline Admin</a></li>
-	<li><a href="http://local.bgr.dev/">BGR</a><br />
-		<a href="http://local.bgr.dev/wordpress/wp-admin/">BGR Admin</a></li>
-	<li><a href="http://local.deadline.dev/">Deadline</a><br />
-		<a href="http://local.deadline.dev/wordpress/wp-admin/">Deadline Admin</a></li>
-	<li><a href="http://local.hollywoodlife.dev/">HollywoodLife</a><br />
-		<a href="http://local.hollywoodlife.dev/wordpress/wp-admin/">HollywoodLife Admin</a></li>
-	<li><a href="http://local.tvline.dev/">TVLine</a><br />
-		<a href="http://local.tvline.dev/wordpress/wp-admin/">TVLine Admin</a></li>
-	<li><a href="http://local.variety.dev/">Variety</a><br />
-		<a href="http://local.variety.dev/wordpress/wp-admin/">Variety Admin</a></li>
-	<li><a href="http://local.variety411.dev/">Variety411</a><br />
-		<a href="http://local.variety411.dev/wordpress/wp-admin/">Variety411 Admin</a></li>
-	<li><a href="http://local.varietyarchive.dev/">Variety Archive (aka varietyultimate.com)</a><br />
-	</li>
+	<li><a href="http://local.wordpress.dev/">http://local.wordpress.dev</a> for WordPress stable (www/wordpress-default)</li>
+	<li><a href="http://local.wordpress-trunk.dev/">http://local.wordpress-trunk.dev</a> for WordPress trunk (www/wordpress-trunk)</li>
+	<li><a href="http://src.wordpress-develop.dev/">http://src.wordpress-develop.dev</a> for trunk WordPress development files (www/wordpress-developer/src)</li>
+	<li><a href="http://build.wordpress-develop.dev/">http://build.wordpress-develop.dev</a> for a Grunt build of those development files (www/wordpress-developer/build)</li>
 </ul>
 </body>
 </html>

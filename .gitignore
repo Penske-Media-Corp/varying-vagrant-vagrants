@@ -1,6 +1,7 @@
 # Stuff that pops up locally for me - @jeremyfelt
 *.sublime*
 .DS_Store
+.idea
 
 # Because this really is a working directory, ignore vagrant's files
 /.vagrant
@@ -15,11 +16,25 @@
 # /provision/provision-pre.sh
 # /provision/provision-post.sh
 
+# Ignore custom trigger scripts in config/homebin.
+/config/homebin/vagrant_halt_custom
+/config/homebin/vagrant_suspend_custom
+/config/homebin/vagrant_destroy_custom
+
 # No need to share individual site configs with each other
 # /config/nginx-config/sites/*.conf
 
+# Ignore anything in the 'custom' directory in config
+/config/custom/*
+
+# Ignore a custom bash_prompt if it exists
+/config/bash_prompt
+
 # No need to share our mysql data with each other
 /database/data/*
+
+# Log files should be ignored.
+/log/*.log
 
 # No need to share our individual sites with each other
 /www/*
@@ -42,10 +57,9 @@
 # And we do have a default SQL file that should be included
 !/database/init.sql
 
+# And we provide our default host names in a dat file.
+!/www/vvv-hosts
+
 # And a few of our web directories are important to share.
-!/www/default/
-/www/default/webgrind
-/www/default/database-admin
-/www/default/memcached-admin/Temp/.version
-/www/default/memcached-admin/Temp/latest
-/www/default/memcached-admin/Temp/live_stats.*
+/www/default/*
+!/www/default/index.php
